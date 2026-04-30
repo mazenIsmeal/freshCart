@@ -4,7 +4,11 @@ import Link from "next/link";
 import { FaFolderOpen } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
 
-export default async function page({ params }) {
+type Params = {
+  id: string;
+};
+
+export default async function page({ params }: {params: Params}) {
     const { data } = await getSubcategory();
 
     const { id } = await params;

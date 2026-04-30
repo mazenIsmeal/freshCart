@@ -2,14 +2,17 @@ import { Product } from "@/Interfaces/products.interface";
 import ProductCard from "@/myComponents/ProductCard/ProductCard";
 import { getProductDataSubcategory } from "@/services/allProducts.service";
 import {
-    getCategoryById,
     getSubcategoryById,
 } from "@/services/category.service";
 import Link from "next/link";
 import { FaBoxOpen, FaFilter, FaFolderOpen } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
-export default async function page({ params }) {
+type Params = {
+  id: string;
+};
+
+export default async function page({ params }: {params: Params}) {
     const { id } = await params;
     console.log(id);
 
@@ -97,7 +100,7 @@ export default async function page({ params }) {
                 <>
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-8">
                         {data.map((product: Product) => (
-                            <ProductCard product={product} />
+                            <ProductCard product={product} key={product._id} />
                         ))}
                     </div>
                 </>

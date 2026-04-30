@@ -3,8 +3,19 @@ import { getDataCart } from "@/app/cart/cart.action";
 import { getAllWishlistProducts } from "@/app/wishlist/wishlist.action";
 import { createContext, useEffect, useState } from "react";
 
+type CartContextType = {
+  cartItem: number;
+  setCartItem: React.Dispatch<React.SetStateAction<number>>;
+  wishlistItem: number;
+  setWishlistItem: React.Dispatch<React.SetStateAction<number>>;
+};
 
-export const CartContext = createContext({});
+export const CartContext = createContext<CartContextType>({
+  cartItem: 0,
+  setCartItem: () => {},
+  wishlistItem: 0,
+  setWishlistItem: () => {},
+});
 
 export default function CartContextProvider({ children }: { children: React.ReactNode; }) {
     const [cartItem, setCartItem] = useState(0)

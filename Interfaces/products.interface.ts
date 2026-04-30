@@ -12,6 +12,7 @@ export interface Metadata {
 }
 
 export interface Product {
+  reviews: any
   sold?: number
   images: string[]
   subcategory: Subcategory[]

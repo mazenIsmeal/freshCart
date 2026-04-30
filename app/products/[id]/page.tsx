@@ -4,13 +4,16 @@ import SliderProductDetails from "@/myComponents/SliderProductDetails/SliderProd
 import { getProductDetails } from "@/services/allProducts.service";
 import Link from "next/link";
 import {  FaStar } from "react-icons/fa";
-import { IoIosArrowForward } from "react-icons/io";
 import { ProductDetailsTabs } from './../../../myComponents/ProductDetailsTabs/ProductDetailsTabs';
 import CategoryWrapper from "@/myComponents/CategoryWrapper/CategoryWrapper";
 
+type Params = {
+  id: string;
+};
+
 export default async function DetailsProduct({
   params,
-}: Promise<{ id: string }>) {
+}: {params: Params}) {
   const { id } = await params;
 
   const { data }: { data: Product } = await getProductDetails(id);

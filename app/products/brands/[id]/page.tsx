@@ -5,7 +5,11 @@ import Link from 'next/link';
 import { Product } from '@/Interfaces/products.interface';
 import ProductCard from '@/myComponents/ProductCard/ProductCard';
 
-export default async function page({ params }) {
+type Params = {
+  id: string;
+};
+
+export default async function page({ params }: {params: Params}) {
     const { id } = await params
     console.log(id);
 
