@@ -16,7 +16,7 @@ export default async function page() {
 
     const cartId = cartData?.cartId || "";
     const numOfCartItems = cartData?.numOfCartItems || 0;
-    const products = cartData?.data?.products || [];
+    const products: any = cartData?.data?.products || [];
     const totalCartPrice = cartData?.data?.totalCartPrice || 0;
 
     return (
