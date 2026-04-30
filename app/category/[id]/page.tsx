@@ -1,4 +1,4 @@
-import { Subcategory } from "@/Interfaces/category";
+import { DataSub } from "@/Interfaces/category";
 import { getCategoryById, getSubcategory } from "@/services/category.service";
 import Link from "next/link";
 import { FaFolderOpen } from "react-icons/fa";
@@ -53,7 +53,7 @@ export default async function page({ params }: {params: Params}) {
                 </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-                {data.map((data: Subcategory) => (
+                {data.map((data: DataSub) => (
                     <>
                         <Link
                             className="group bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-xl hover:border-primary-200 transition-all duration-300 hover:-translate-y-1"
