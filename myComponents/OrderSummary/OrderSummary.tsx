@@ -4,7 +4,7 @@ import { FaBox, FaShieldAlt, FaTruck } from "react-icons/fa";
 import { FaBagShopping } from "react-icons/fa6";
 import OrderBtn from "../OrderBtn/OrderBtn";
 
-export default function OrderSummary({ products, totalCartPrice, paymentMethod }: { products: Product[], totalCartPrice: number }) {
+export default function OrderSummary({ products, totalCartPrice, paymentMethod }: { products: Product[], totalCartPrice: number, paymentMethod: 'cash' | 'online'  }) {
     return (
         <>
             <div className="lg:col-span-1">
@@ -19,7 +19,7 @@ export default function OrderSummary({ products, totalCartPrice, paymentMethod }
                     <div className="p-5">
                         <div className="space-y-3 max-h-56 overflow-y-scroll mb-5 pr-1" style={{ overflow: 'auto', height: '224px' }}>
                             {products.map((item) =>
-                                <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
+                                <div key={item._id} className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
                                     <div className="w-14 h-14 rounded-lg bg-white p-1 border border-gray-100 shrink-0">
                                         <img
                                             alt="Woman Shawl"

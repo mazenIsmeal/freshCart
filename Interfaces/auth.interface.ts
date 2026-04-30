@@ -1,4 +1,4 @@
-export interface Register {
+export interface RegisterAuth {
     name: string,
     email:string,
     password:string,

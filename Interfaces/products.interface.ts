@@ -15,7 +15,7 @@ export interface Product {
   reviews: any
   sold?: number
   images: string[]
-  subcategory: Subcategory[]
+  subcategory: Subcategory
   ratingsQuantity: number
   _id: string
   title: string

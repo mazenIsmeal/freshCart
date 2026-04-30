@@ -19,8 +19,8 @@ export default function Slider() {
         style={{
           "--swiper-navigation-color": "#fff",
           "--swiper-pagination-color": "#fff",
-          "position:": "relative",
-        }}
+          position: "relative",
+        }as React.CSSProperties}
         speed={600}
         parallax={true}
         pagination={{

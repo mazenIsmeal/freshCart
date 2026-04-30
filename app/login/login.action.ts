@@ -1,5 +1,5 @@
 "use server";
-import { LoginType, Register, ResLogin, ResRegister } from "@/Interfaces/auth.interface";
+import { LoginType, ResLogin } from "@/Interfaces/auth.interface";
 import { cookies } from "next/headers";
 
 export async function loginForm(values: LoginType) {

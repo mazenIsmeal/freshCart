@@ -1,4 +1,4 @@
-export interface Category {
+export interface CategoryRes {
   results: number
   metadata: Metadata
   data: DataCategory[]

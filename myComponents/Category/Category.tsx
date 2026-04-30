@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import CateHearo from "../CateHearo/CateHearo";
+import { CategoryRes, DataCategory } from "@/Interfaces/category";
 
 export default async function Category() {
-    let categories = [];
+    let categories: any = [];
 
     try {
         const data = await getAllCategory();
@@ -29,7 +30,7 @@ export default async function Category() {
                             No categories available right now 👀
                         </p>
                     ) : (
-                        categories.map((cate) => (
+                        categories.map((cate: any) => (
                             <Link
                                 className="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition group cursor-pointer"
                                 href={`/category/${cate._id}`}

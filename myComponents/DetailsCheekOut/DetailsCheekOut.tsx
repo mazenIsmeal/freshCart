@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { formOrderSchema } from "@/Schema/registerSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, UseFormRegister, FieldErrors } from "react-hook-form";
 import { CiCreditCard1, CiLocationOn } from "react-icons/ci";
 import { FaCheck, FaCity, FaMoneyBill, FaPhoneAlt, FaShieldAlt, FaWallet } from "react-icons/fa";
 import { FaCircleInfo, FaHouse } from "react-icons/fa6";
@@ -20,7 +20,7 @@ export interface ShippingAddress {
 }
 
 
-export default function DetailsCheekOut({ register, paymentMethod, setPaymentMethod, formState }) {
+export default function DetailsCheekOut({ register, paymentMethod, setPaymentMethod, formState }: any) {
 
 
     return (

@@ -11,7 +11,7 @@ import AddProductToCartBtn from '../AddProductToCartBtn/AddProductToCartBtn';
 import AddWishlist from '../AddWishlist/AddWishlist';
 
 
-export default function ProductCard({ product, wishlistIds }: { product: Product }) {
+export default function ProductCard({ product, wishlistIds }: { product: Product, wishlistIds: any }) {
 
   return (
     <Card className="relative w-full max-w-sm overflow-hidden rounded-2xl shadow-sm group">

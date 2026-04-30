@@ -7,7 +7,7 @@ import { getAllWishlistProducts } from '@/app/wishlist/wishlist.action';
 export default async function ProductWrapper() {
     let products: Product[] = [];
 
-      const wishlist = await getAllWishlistProducts();
+    const wishlist = await getAllWishlistProducts();
 
 const wishlistIds = wishlist.data.map((item: any) => item.id);
 

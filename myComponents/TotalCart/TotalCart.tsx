@@ -8,7 +8,7 @@ import { IoBag } from "react-icons/io5";
 export default function TotalCart({
     totalCartPrice,
     numOfCartItems,
-    cartId
+    cartId,
 }: {
     totalCartPrice: number;
     numOfCartItems: number;

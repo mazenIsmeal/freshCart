@@ -1,8 +1,8 @@
 "use server";
-import { Register, ResRegister } from "@/Interfaces/auth.interface";
+import {  RegisterAuth, ResRegister } from "@/Interfaces/auth.interface";
 import { cookies } from "next/headers";
 
-export async function register(values: Register) {
+export async function register(values: RegisterAuth) {
     const res = await fetch(`https://ecommerce.routemisr.com/api/v1/auth/signup`, {
         method: 'POST',
         body: JSON.stringify(values),

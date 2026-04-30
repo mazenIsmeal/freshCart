@@ -1,3 +1,4 @@
+import { getAllWishlistProducts } from "@/app/wishlist/wishlist.action";
 import { Product } from "@/Interfaces/products.interface";
 import ProductCard from "@/myComponents/ProductCard/ProductCard";
 import { getProductDataSubcategory } from "@/services/allProducts.service";
@@ -19,6 +20,10 @@ export default async function page({ params }: {params: Params}) {
     const { data } = await getProductDataSubcategory(id);
 
     const subId = await getSubcategoryById(id);
+
+    const wishlist = await getAllWishlistProducts();
+    
+    const wishlistIds = wishlist.data.map((item: any) => item.id);
 
     return (
         <>
@@ -100,7 +105,7 @@ export default async function page({ params }: {params: Params}) {
                 <>
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-8">
                         {data.map((product: Product) => (
-                            <ProductCard product={product} key={product._id} />
+                            <ProductCard product={product} key={product._id} wishlistIds={wishlistIds} />
                         ))}
                     </div>
                 </>

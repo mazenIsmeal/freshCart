@@ -4,6 +4,7 @@ import { FaBoxOpen, FaFilter, FaFolderOpen } from 'react-icons/fa';
 import Link from 'next/link';
 import { Product } from '@/Interfaces/products.interface';
 import ProductCard from '@/myComponents/ProductCard/ProductCard';
+import { getAllWishlistProducts } from '@/app/wishlist/wishlist.action';
 
 type Params = {
   id: string;
@@ -19,6 +20,9 @@ export default async function page({ params }: {params: Params}) {
     const { data } = await getDataBrand(id);
     console.log(data);
 
+    const wishlist = await getAllWishlistProducts();
+    
+    const wishlistIds = wishlist.data.map((item: any) => item.id);
 
 
     return <>
@@ -100,7 +104,7 @@ export default async function page({ params }: {params: Params}) {
             ) : (
                 <>
                     {data.map((product: Product) => (
-                            <ProductCard product={product} key={product._id} />
+                            <ProductCard product={product} key={product._id} wishlistIds={wishlistIds} />
                         ))}
                 </>
             )}

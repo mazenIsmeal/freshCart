@@ -28,7 +28,7 @@ import {
   InputGroupTextarea,
 } from "@/components/ui/input-group";
 import { formSchema } from "@/Schema/registerSchema";
-import { Register } from "@/Interfaces/auth.interface";
+import { RegisterAuth } from "@/Interfaces/auth.interface";
 import { register } from "./register.action";
 import { redirect } from "next/navigation";
 import { useState } from "react";
@@ -50,7 +50,7 @@ export default function Register() {
     },
   });
 
-  async function onSubmit(values: Register) {
+  async function onSubmit(values: RegisterAuth) {
     setLoading(true);
     try {
       console.log(values);

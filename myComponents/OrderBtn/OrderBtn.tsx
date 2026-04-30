@@ -1,7 +1,7 @@
 'use client'
 import { FaBox } from 'react-icons/fa'
 
-export default function OrderBtn({ paymentMethod }) {
+export default function OrderBtn({ paymentMethod }: any) {
     console.log(paymentMethod);
 
     return <>

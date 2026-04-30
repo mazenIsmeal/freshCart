@@ -8,9 +8,9 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 export interface ValuesPassword {
-  email: string,
-  code: string,
-  password: string
+  email?: string,
+  resetCode?: string,
+  newPassword?: string
 }
 
 export default function Page() {
@@ -20,8 +20,8 @@ export default function Page() {
     const {register, handleSubmit} = useForm({
         defaultValues: {
             email: '',
-            code: '',
-            password: ''
+            resetCode: '',
+            newPassword: ''
         }
     })
 
@@ -33,14 +33,14 @@ export default function Page() {
     toast.success(sentMail.message || 'Pleas cheek your email')
     setStep('code');
   } else if (step === 'code') {
-    console.log(values.code);
-    const resetCode = await verifyResetCode({resetCode: values.code})
+    console.log(values.resetCode);
+    const resetCode = await verifyResetCode({resetCode: values.resetCode})
     console.log(resetCode);
     setStep('password');
   } else {
     const resetPasswordValue = await resetPassword({
       email: values.email,
-      newPassword: values.password
+      newPassword: values.newPassword
     })
     console.log(resetPasswordValue);
     router.push('/login');
@@ -161,7 +161,7 @@ export default function Page() {
                     type="text"
                     placeholder="Enter verification code"
                     className="w-full px-4 py-3 pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-100 transition-all"
-                    {...register('code')}
+                    {...register('resetCode')}
                   />
                 )}
 
@@ -171,7 +171,7 @@ export default function Page() {
                       type="password"
                       placeholder="New password"
                       className="w-full px-4 py-3 pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-100 transition-all"
-                      {...register('password')}
+                      {...register('newPassword')}
                     />
                   </>
                 )}

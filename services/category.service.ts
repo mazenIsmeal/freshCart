@@ -1,6 +1,6 @@
-import { Category } from "@/Interfaces/category";
+import { CategoryRes } from "@/Interfaces/category";
 
-export async function getAllCategory():Promise<Category> {
+export async function getAllCategory():Promise<CategoryRes> {
     const res = await fetch('https://ecommerce.routemisr.com/api/v1/categories')
     const data = await res.json();
     return data

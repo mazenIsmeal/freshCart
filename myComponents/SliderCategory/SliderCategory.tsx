@@ -8,10 +8,19 @@ import { Navigation } from 'swiper/modules';
 import { Product } from '@/Interfaces/products.interface';
 import ProductCard from '../ProductCard/ProductCard';
 import { useRef } from 'react';
+import { getAllWishlistProducts } from '@/app/wishlist/wishlist.action';
 
 export default function SliderCategory({ data }: { data: Product[] }) {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
+    async function test() {
+        const wishlist = await getAllWishlistProducts();
+        
+        const wishlistId = wishlist.data.map((item: any) => item.id);
+        return wishlistId;
+    }
+
+    const wishlistIds = test()
 
     return (
         <div className="relative">
@@ -50,7 +59,7 @@ export default function SliderCategory({ data }: { data: Product[] }) {
             >
                 {data.map((product) => (
                     <SwiperSlide key={product._id}>
-                        <ProductCard product={product} />
+                        <ProductCard product={product} key={product._id} wishlistIds={wishlistIds} />
                     </SwiperSlide>
                 ))}
             </Swiper>
