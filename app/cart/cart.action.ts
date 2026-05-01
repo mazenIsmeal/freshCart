@@ -36,9 +36,11 @@ export async function getDataCart():Promise<CartData> {
             token: accessToken as string
         }
     })
-
-    const data = await res.json();
     
+    const data = await res.json();
+        if (!res.ok) {
+    throw new Error(data.message || 'Error adding cart')
+}
     return data
 }
 
@@ -56,7 +58,7 @@ export async function updateCountProductCart(id: string, count: number) {
 
     const data = await res.json();
     
-    if(data.status = 'success') {
+    if(data.status === 'success') {
         revalidatePath('/cart');
     }
 }
@@ -71,7 +73,7 @@ export async function deleteItemCart(id: string) {
         }
     })
     const data = await res.json();
-    if(data.status = 'success') {
+    if(data.status === 'success') {
         revalidatePath('/cart');
     }
     return data
@@ -88,7 +90,7 @@ export async function deleteAllItemCart() {
         }
     })
     const data = await res.json();
-    if(data.status = 'success') {
+    if(data.status === 'success') {
         revalidatePath('/cart');
     }
 }

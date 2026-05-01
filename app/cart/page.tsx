@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import React from 'react'
 import { getDataCart } from './cart.action'
 import Link from 'next/link';
@@ -16,8 +17,11 @@ export default async function page() {
 
     const cartId = cartData?.cartId || "";
     const numOfCartItems = cartData?.numOfCartItems || 0;
-    const products: any = cartData?.data?.products || [];
+    const products: any = Array.isArray(cartData?.data?.products)
+  ? cartData.data.products
+  : [];
     const totalCartPrice = cartData?.data?.totalCartPrice || 0;
+
 
     return (
         <>

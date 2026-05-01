@@ -9,7 +9,7 @@ export default async function ProductWrapper() {
 
     const wishlist = await getAllWishlistProducts();
 
-const wishlistIds = wishlist.data.map((item: any) => item.id);
+const wishlistIds = wishlist.data?.map((item: any) => item.id);
 
     try {
         const productData = await getAllProducts();

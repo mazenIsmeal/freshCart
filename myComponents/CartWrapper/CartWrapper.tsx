@@ -2,7 +2,6 @@ import { Product } from '@/Interfaces/cart.interface'
 import React from 'react'
 import CartItem from '../CartItem/CartItem'
 import Link from 'next/link'
-import { FaTrash } from 'react-icons/fa'
 import TotalCart from '../TotalCart/TotalCart'
 import ClearAllItemCart from '../ClearAllItemCart/ClearAllItemCart'
 
@@ -17,6 +16,8 @@ export default function CartWrapper({
     totalCartPrice: number,
     cartId: string
 }) {
+    
+
 
     if (!products || products.length === 0) {
         return (
@@ -35,7 +36,7 @@ export default function CartWrapper({
     return (
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
             <div className="lg:col-span-2">
-                {products.map((product: any) => (
+                {products?.map((product: any) => (
                     <CartItem product={product} key={product._id} />
                 ))}
 
