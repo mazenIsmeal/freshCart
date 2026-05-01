@@ -10,7 +10,7 @@ import 'swiper/css/thumbs';
 import { FreeMode, Thumbs } from 'swiper/modules';
 import { Product } from './../../Interfaces/products.interface';
 
-export default function SliderProductDetails({ data }: { data: Product }) {
+export default function SliderProductDetails({ images }: { images: string[] }) {
     const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -24,7 +24,7 @@ export default function SliderProductDetails({ data }: { data: Product }) {
                 modules={[FreeMode, Thumbs]}
                 className="mySwiper2"
             >
-                {data.images?.map((img: string, index: number) => (
+                {images?.map((img: string, index: number) => (
                     <SwiperSlide key={index}>
                         <div className="relative w-full h-[400px]">
                             <Image
@@ -49,7 +49,7 @@ export default function SliderProductDetails({ data }: { data: Product }) {
                 modules={[FreeMode, Thumbs]}
                 className="mySwiper mt-3"
             >
-                {data.images?.map((img: string, index: number) => (
+                {images?.map((img: string, index: number) => (
                     <SwiperSlide key={index}>
                         <div
                             onClick={() => setActiveIndex(index)}

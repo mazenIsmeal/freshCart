@@ -7,20 +7,23 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import { Product } from '@/Interfaces/products.interface';
 import ProductCard from '../ProductCard/ProductCard';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getAllWishlistProducts } from '@/app/wishlist/wishlist.action';
 
 export default function SliderCategory({ data }: { data: Product[] }) {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
-    async function test() {
-        const wishlist = await getAllWishlistProducts();
-        
-        const wishlistId = wishlist.data.map((item: any) => item.id);
-        return wishlistId;
-    }
+    const [wishlistIds, setWishlistIds] = useState<string[]>([]);
 
-    const wishlistIds = test()
+    useEffect(() => {
+        // ✅ بيتنفذ بعد الـ render مش أثناءه
+        async function fetchWishlist() {
+            const wishlist = await getAllWishlistProducts();
+            const ids = wishlist.data.map((item: any) => item.id);
+            setWishlistIds(ids);
+        }
+        fetchWishlist();
+    }, []);
 
     return (
         <div className="relative">

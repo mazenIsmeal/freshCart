@@ -1,7 +1,7 @@
-import { Product } from "@/Interfaces/products.interface";
+import { Product, Review } from "@/Interfaces/products.interface";
 import QuantityState from "@/myComponents/QuantityState/QuantityState";
 import SliderProductDetails from "@/myComponents/SliderProductDetails/SliderProductDetails";
-import { getProductDetails } from "@/services/allProducts.service";
+import { getProductDetails, getReviewsProduct } from "@/services/allProducts.service";
 import Link from "next/link";
 import {  FaStar } from "react-icons/fa";
 import { ProductDetailsTabs } from './../../../myComponents/ProductDetailsTabs/ProductDetailsTabs';
@@ -16,9 +16,11 @@ export default async function DetailsProduct({
 }: {params: Params}) {
   const { id } = await params;
 
+  
   const { data }: { data: Product } = await getProductDetails(id);
   console.log(data.title, 'form product Details');
-
+  
+  const reviews: Review = await getReviewsProduct(data._id);
 
   return (
     <>
@@ -63,7 +65,7 @@ export default async function DetailsProduct({
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-1/4">
             <div className="bg-white rounded-xl shadow-sm p-4 sticky top-4">
-              <SliderProductDetails data={data} />
+              <SliderProductDetails images={data.images} />
             </div>
           </div>
           <div className="lg:w-3/4">
@@ -84,7 +86,7 @@ export default async function DetailsProduct({
               </h1>
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex text-yellow-400">
-                  {Array.from({ length: data.ratingsAverage }).map((_, i) => (
+                  {Array.from({ length: Math.round(data.ratingsAverage) }).map((_, i) => (
                     <FaStar key={i} />
                   ))}
                 </div>
@@ -183,7 +185,7 @@ export default async function DetailsProduct({
             </div>
           </div>
         </div>
-        <ProductDetailsTabs data={data} />
+        <ProductDetailsTabs data={data} reviews={reviews} />
         <CategoryWrapper data={data} />
       </div>
     </>

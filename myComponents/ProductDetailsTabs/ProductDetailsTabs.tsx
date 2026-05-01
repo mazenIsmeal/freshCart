@@ -1,18 +1,14 @@
+'use client'
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+  Card
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FaCheck, FaStar, FaTruck } from "react-icons/fa";
 import { Product, Review } from "@/Interfaces/products.interface";
-import { getReviewsProduct } from "@/services/allProducts.service";
 
-export async function ProductDetailsTabs({ data }: { data: Product }) {
+export function ProductDetailsTabs({ data, reviews }: { data: Product, reviews: Review }) {
 
-  const reviews: Review = await getReviewsProduct(data._id);
+
   const ratingsCount = {
     5: 0,
     4: 0,
