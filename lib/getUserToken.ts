@@ -1,7 +1,7 @@
 'use server'
 
-import { decode } from "next-auth/jwt";
-import { cookies } from "next/headers";
+// import { decode } from "next-auth/jwt";
+// import { cookies } from "next/headers";
 
 // export async function getDecodedUserToken() {
 //     const cookie = await cookies()
@@ -10,17 +10,29 @@ import { cookies } from "next/headers";
 //     return decodedToken?.accessToken;
 // }
 
+// export async function getUserDataFromToken() {
+//     const cookieStore = await cookies()
+//     const token = cookieStore.get('next-auth.session-token')?.value;
+
+//     const decodedToken = await decode({
+//         token,
+//         secret: process.env.AUTH_SECRET as string
+//     });
+
+//     return {
+//         accessToken: decodedToken?.accessToken,
+//         userId: decodedToken?.userId
+//     };
+// }
+
+import { getServerSession } from "next-auth";
+import { nextAuthConfig } from "./nextAuth/nextAuthConifg";
+
 export async function getUserDataFromToken() {
-    const cookieStore = await cookies()
-    const token = cookieStore.get('next-auth.session-token')?.value;
+  const session = await getServerSession(nextAuthConfig);
 
-    const decodedToken = await decode({
-        token,
-        secret: process.env.AUTH_SECRET as string
-    });
-
-    return {
-        accessToken: decodedToken?.accessToken,
-        userId: decodedToken?.userId
-    };
+  return {
+    accessToken: session?.accessToken || null,
+    user: session?.user || null,
+  };
 }

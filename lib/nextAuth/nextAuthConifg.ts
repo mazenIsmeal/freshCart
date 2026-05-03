@@ -1,6 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials"
 
+
 export const nextAuthConfig:NextAuthOptions = {
     providers: [
         CredentialsProvider({
@@ -38,7 +39,11 @@ export const nextAuthConfig:NextAuthOptions = {
                 token.userId = user.id
             }
             return token;
-        }
+        },
+        async session({ session, token }) {
+        session.accessToken = token.accessToken;
+        return session;
+    },
     },
     pages: {
         signIn: '/login'
